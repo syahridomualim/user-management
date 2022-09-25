@@ -1,0 +1,58 @@
+ <!-- model add user -->
+ <div class="container " style="margin-top: 10px;">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h4 class="modal-title text-center">Create User</h4>
+       </div>
+       <div class="modal-body">
+         <div>
+           <form [formGroup]="userForm" (ngSubmit)="createUser(userForm.value)">
+             <div class="input-group mb-3">
+               <label for="nama">Nama</label>
+               <input placeholder="Masukkan nama anda" type="text" id="nama" name="nama" formControlName="nama" class="form-control" required>
+               <div style="color: red">
+                <span *ngIf="userForm.controls['nama'].touched && userForm.controls['nama'].invalid">Nama harus diisi</span>
+              </div>
+             </div>
+             <div class="input-group mb-3">
+               <label for="noHP">Nomor Handphone</label>
+               <input placeholder="Masukkan angka" type="text" id="noHP" name="noHP" formControlName="noHP" class="form-control" required>
+               <div style="color: red">
+                <span *ngIf="userForm.controls['noHP'].touched && userForm.controls['noHP'].invalid">Harus angka</span>
+              </div>
+             </div>
+             <div class="input-group mb-3">
+               <label for="noHP">Email</label>
+               <input placeholder="Masukkan email anda. Misal @mail.com" type="email" id="noHP" name="email" formControlName="email" class="form-control" required>
+               <div style="color: red">
+                <span *ngIf="userForm.controls['email'].touched && userForm.controls['email'].invalid">Harus format email</span>
+              </div>
+             </div>
+             <div>
+               <div formArrayName="alamat" class="modal-content" style="color: rgb(180, 205, 230);">
+                 <label style="color: black;">Alamat</label>
+                 <div *ngFor="let alamat of alamat.controls; let i=index; let isLast = last;">
+                   <input type="text" [formControlName]="i" class="form-control">
+                   <div style="color: red">
+                    <span *ngIf="userForm.controls['alamat'].touched && userForm.controls['alamat'].invalid">Alamat harus diisi</span>
+                  </div>
+                   <div class="modal-footer">
+                     <button *ngIf="!isLast" (click)="removeAlamat(i)" class="btn btn-secondary">Remove</button>
+                     <button type="button" (click)="addAlamat()" class="btn btn-primary">Add</button>
+                   </div>
+                 </div>
+               </div>
+             </div>
+             <button type="submit" style="display: none;" id="new-user-save"></button>
+           </form>
+         </div>
+       </div>
+       <div class="modal-footer">
+         <button type="button" routerLink="/home" class="btn btn-secondary">BACK</button>
+         <button type="button" (click)="createUser(userForm.value)" [disabled]="userForm.invalid"
+           class="btn btn-primary">CREATE</button>
+       </div>
+     </div>
+   </div>
+ </div>
