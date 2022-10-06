@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://usermanagement-env.eba-nmqucfgk.us-east-2.elasticbeanstalk.com'
+  apiUrl: 'https://usermanagement-env.eba-nmqucfgk.us-east-2.elasticbeanstalk.com'
 };
 
 /*
